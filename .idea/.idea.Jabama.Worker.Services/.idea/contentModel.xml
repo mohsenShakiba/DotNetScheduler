@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\m.shakiba\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\m.shakiba\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\m.shakiba\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Jabama.Worker.Services.1056549947.00" t="ExcludeRecursive" />
+    <e p="C:\Users\m.shakiba\Desktop\Projects\Jabama.Worker.Services" t="IncludeFlat">
+      <e p="Jabama.Worker.Services.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="src\Scheduler" t="IncludeRecursive">
+        <e p="Base" t="Include">
+          <e p="Cron" t="Include">
+            <e p="CrontabField.cs" t="Include" />
+            <e p="CrontabFieldAccumulator.cs" t="Include" />
+            <e p="CrontabFieldImpl.cs" t="Include" />
+            <e p="CrontabFieldKind.cs" t="Include" />
+            <e p="CrontabSchedule.cs" t="Include" />
+          </e>
+          <e p="IJob.cs" t="Include" />
+          <e p="Jobmanager.cs" t="Include" />
+          <e p="JobScheduler.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="config" t="Include" />
+        <e p="Jobs" t="Include">
+          <e p="TestJob.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Scheduler.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Scheduler.csproj" t="IncludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
