@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\m.shakiba\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\m.shakiba\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\m.shakiba\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Jabama.Worker.Services.1056549947.00" t="ExcludeRecursive" />
-    <e p="C:\Users\m.shakiba\Desktop\Projects\Jabama.Worker.Services" t="IncludeFlat">
+    <e p="C:\Users\user\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\user\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Jabama.Worker.Services.-784792493.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\C#\DotNetScheduler" t="IncludeFlat">
       <e p="Jabama.Worker.Services.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="src\Scheduler" t="IncludeRecursive">
         <e p="Base" t="Include">
+          <e p="config" t="Include">
+            <e p="JobConfiguration.cs" t="Include" />
+          </e>
           <e p="Cron" t="Include">
             <e p="CrontabField.cs" t="Include" />
             <e p="CrontabFieldAccumulator.cs" t="Include" />
@@ -16,12 +18,15 @@
             <e p="CrontabFieldKind.cs" t="Include" />
             <e p="CrontabSchedule.cs" t="Include" />
           </e>
+          <e p="Extensions" t="Include">
+            <e p="SchedulerExtension.cs" t="Include" />
+          </e>
           <e p="IJob.cs" t="Include" />
+          <e p="IJobScheduler.cs" t="Include" />
           <e p="Jobmanager.cs" t="Include" />
           <e p="JobScheduler.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="config" t="Include" />
         <e p="Jobs" t="Include">
           <e p="TestJob.cs" t="Include" />
         </e>

@@ -1,16 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Scheduler.Base.Config;
 
 namespace Scheduler.Base
 {
-    public class JobScheduler
+    public class JobScheduler : IJobScheduler
     {
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        private IList<JobManager> _jobsManager = new List<JobManager>();
-        
-        public void RegisterJob<T>(string cronExpression) where T: IJob, new()
+        private readonly IList<JobManager> _jobsManager = new List<JobManager>();
+
+        public JobScheduler(IServiceScopeFactory serviceScopeFactory)
         {
-            var jobManager = new JobManager(new T(), cronExpression);
+            _serviceScopeFactory = serviceScopeFactory;
+        }
+
+        public void RegisterJob<T>(string cronExpression, JobConfiguration jobConfiguration = null) where T : IJob
+        {
+            using var scopedService = _serviceScopeFactory.CreateScope();
+            var job = scopedService.ServiceProvider.GetService<T>();
+            var jobLogger = scopedService.ServiceProvider.GetService<ILogger<T>>();
+            var jobManager = new JobManager(job, cronExpression, jobConfiguration ?? new JobConfiguration(), jobLogger);
             _jobsManager.Add(jobManager);
         }
 
@@ -18,8 +30,9 @@ namespace Scheduler.Base
         {
             foreach (var jobManager in _jobsManager)
             {
-                jobManager.SetupNextScheduling();
+                jobManager.SetupTimer();
             }
         }
+
     }
 }

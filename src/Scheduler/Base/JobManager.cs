@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Scheduler.Base.Config;
 using Scheduler.Base.Cron;
 
 namespace Scheduler.Base
@@ -10,66 +12,74 @@ namespace Scheduler.Base
 
         public IJob Job { get; }
         public string CronExpression { get; }
-
-        private bool _isRunning = false;
-        private Timer _timer;
-        private CancellationTokenSource _cancellationTokenSource;
+        public JobConfiguration JobConfiguration { get; }
         
-        public JobManager(IJob job, string cronExpression)
+        private readonly CrontabSchedule _crontabSchedule;
+        private readonly Timer _timer;
+        private CancellationTokenSource _cancellationTokenSource;
+        private readonly ILogger _logger;
+        private bool _isJobBeingProcessed;
+        private bool _isDisposed;
+
+        public JobManager(IJob job, string cronExpression, JobConfiguration jobConfiguration, ILogger logger)
         {
+            _logger = logger;
             Job = job;
             CronExpression = cronExpression;
+            JobConfiguration = jobConfiguration;
+            _crontabSchedule = CrontabSchedule.Parse(CronExpression);
+            _timer = new Timer(RunNextAsync);
+        }
+        
+        public void SetupTimer()
+        {
+            if (_isDisposed)
+                return;
+            var nextOccurrence = _crontabSchedule.GetNextOccurrence(DateTime.Now);
+            var timeSpanTillNexOccurence = nextOccurrence - DateTime.Now;
+            _timer.Change(timeSpanTillNexOccurence, TimeSpan.Zero);
         }
 
-        public void SetupNextScheduling()
+        private async void RunNextAsync(object timeSpanUntilNextOccurence)
         {
-            var timeSpanTillNexOccurence = GetNextOccurence();
-            _timer?.Dispose();
-            Console.WriteLine($"next job will run in {timeSpanTillNexOccurence}");
-            _timer = new Timer(RunNextAsync, timeSpanTillNexOccurence, timeSpanTillNexOccurence, 
-                TimeSpan.Zero);
+            var taskDuration = (TimeSpan) timeSpanUntilNextOccurence;
+            SetupTimer();
+            if (!_isJobBeingProcessed || JobConfiguration.AllowParallelExecution)
+                await RunJobAsync(taskDuration);
         }
 
-        private async void RunNextAsync(object o)
+        private async Task RunJobAsync(TimeSpan timeSpan)
         {
-            var taskDuration = (TimeSpan) o;
-            await RunAsync(taskDuration);
-            SetupNextScheduling();
-        }
-
-        private async Task RunAsync(TimeSpan timeSpan)
-        {
-            var cts = new CancellationTokenSource(timeSpan);
+            _cancellationTokenSource = new CancellationTokenSource(timeSpan);
+            _isJobBeingProcessed = true;
             try
             {
-                await Job.RunAsync(cts.Token);
+                await Job.RunAsync(_cancellationTokenSource.Token);
             }
             catch (TaskCanceledException)
             {
-                Console.WriteLine($"{this} took too long to run");
+                _logger.LogWarning($"{this} took too long");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                _logger.LogError($"{this} throw an exception\n{e}");
             }
-        }
-
-        public TimeSpan GetNextOccurence()
-        {
-            var scheduler = CrontabSchedule.Parse(CronExpression);
-            var nextOccurrence = scheduler.GetNextOccurrence(DateTime.Now);
-            return nextOccurrence - DateTime.Now;
+            finally
+            {
+                _isJobBeingProcessed = false;
+            }
         }
 
         public void Dispose()
         {
+            _isDisposed = true;
             _timer?.Dispose();
             _cancellationTokenSource?.Cancel();
         }
 
         public override string ToString()
         {
-            return $"Job: {nameof(Job)}, runs every: {CronExpression}";
+            return $"Job: {nameof(Job)}, with cron expression: {CronExpression}";
         }
 
         public override int GetHashCode()
@@ -94,5 +104,6 @@ namespace Scheduler.Base
             if (obj.GetType() != this.GetType()) return false;
             return Equals((JobManager) obj);
         }
+
     }
 }
