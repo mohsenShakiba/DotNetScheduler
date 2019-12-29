@@ -11,8 +11,6 @@ namespace Scheduler
             var scheduler = new JobScheduler();
             scheduler.RegisterJob<TestJob>("*/10 * * * * *");
             
-            scheduler.UseScheduler();
-
             Console.ReadLine();
         }
     }

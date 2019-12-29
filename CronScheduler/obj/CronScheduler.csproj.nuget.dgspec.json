@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj": {}
+    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj": {
+    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj",
-        "projectName": "Scheduler",
-        "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj",
+        "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
+        "projectName": "CronScheduler",
+        "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
         "packagesPath": "C:\\Users\\m.shakiba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\obj\\",
+        "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

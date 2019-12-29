@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj",
-    "projectName": "Scheduler",
-    "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\Scheduler.csproj",
-    "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\src\\Scheduler\\obj\\",
+    "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\TestProject.csproj",
+    "projectName": "TestProject",
+    "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\TestProject.csproj",
+    "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -19,7 +19,11 @@
     },
     "frameworks": {
       "netcoreapp3.0": {
-        "projectReferences": {}
+        "projectReferences": {
+          "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {
+            "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
@@ -30,12 +34,6 @@
   },
   "frameworks": {
     "netcoreapp3.0": {
-      "dependencies": {
-        "Microsoft.Extensions.Logging": {
-          "target": "Package",
-          "version": "[3.1.0, )"
-        }
-      },
       "imports": [
         "net461",
         "net462",
