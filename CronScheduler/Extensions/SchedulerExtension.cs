@@ -9,12 +9,11 @@ namespace CronScheduler.Extensions
     {
         public static IServiceCollection AddScheduler(this IServiceCollection serviceCollection, Action<IJobScheduler> jobScheduleBuilder)
         {
-            return serviceCollection.AddSingleton<IJobScheduler, JobScheduler>(l =>
+            return serviceCollection.AddSingleton<IJobScheduler, JobScheduler>(sp =>
             {
-                var scopedFactory = l.GetService<IServiceScopeFactory>();
-                var jobScheduler = new JobScheduler(scopedFactory);
-                jobScheduleBuilder(jobScheduler);
-                return jobScheduler;
+                var scheduler = new JobScheduler(sp);
+                jobScheduleBuilder(scheduler);
+                return scheduler;
             });
         }
         

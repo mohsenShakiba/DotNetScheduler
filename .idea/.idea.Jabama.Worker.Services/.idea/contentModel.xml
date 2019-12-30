@@ -25,6 +25,7 @@
         <e p="IJobScheduler.cs" t="Include" />
         <e p="Jobmanager.cs" t="Include" />
         <e p="JobScheduler.cs" t="Include" />
+        <e p="JobSchedulerBuilder.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">

@@ -8,11 +8,11 @@ namespace CronScheduler
 {
     public class JobScheduler : IJobScheduler
     {
-        private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly IServiceProvider _serviceScopeFactory;
 
         private readonly IList<JobManager> _jobsManagerList = new List<JobManager>();
 
-        public JobScheduler(IServiceScopeFactory serviceScopeFactory)
+        public JobScheduler(IServiceProvider serviceScopeFactory)
         {
             _serviceScopeFactory = serviceScopeFactory;
         }
