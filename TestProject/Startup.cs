@@ -33,7 +33,7 @@ namespace TestProject
 
             services.AddScheduler(b =>
             {
-                b.RegisterJob<TestJob>("*/10 * * * * *");
+                b.AddJob<TestJob>("*/10 * * * * *");
             });
         }
 

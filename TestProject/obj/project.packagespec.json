@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\TestProject.csproj",
+    "projectUniqueName": "D:\\Projects\\C#\\DotNetScheduler\\TestProject\\TestProject.csproj",
     "projectName": "TestProject",
-    "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\TestProject.csproj",
-    "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\TestProject\\obj\\",
+    "projectPath": "D:\\Projects\\C#\\DotNetScheduler\\TestProject\\TestProject.csproj",
+    "outputPath": "D:\\Projects\\C#\\DotNetScheduler\\TestProject\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14,14 +14,13 @@
     ],
     "sources": {
       "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-      "https://api.nuget.org/v3/index.json": {},
-      "https://nexus.indraproject.ir/repository/indra-dev-nuget": {}
+      "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
       "netcoreapp3.0": {
         "projectReferences": {
-          "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {
-            "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj"
+          "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj": {
+            "projectPath": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj"
           }
         }
       }

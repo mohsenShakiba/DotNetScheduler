@@ -34,7 +34,7 @@ namespace CronScheduler.Cron
                     expression));
             }
 
-            _seconds = CrontabField.Minutes(fields[0]);
+            _seconds = CrontabField.Seconds(fields[0]);
             _minutes = CrontabField.Minutes(fields[1]);
             _hours = CrontabField.Hours(fields[2]);
             _days = CrontabField.Days(fields[3]);
@@ -99,7 +99,7 @@ namespace CronScheduler.Cron
             //
             second = _seconds.Next(second);
             
-            if (second == null)
+            if (second == nil)
             {
                 second = _seconds.GetFirst();
                 minute++;

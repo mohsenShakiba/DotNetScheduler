@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {}
+    "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj": {
+    "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
+        "projectUniqueName": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj",
         "projectName": "CronScheduler",
-        "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
-        "packagesPath": "C:\\Users\\m.shakiba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\obj\\",
+        "projectPath": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\m.shakiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,8 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nexus.indraproject.ir/repository/indra-dev-nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
@@ -42,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
               "version": "[3.1.0, )"

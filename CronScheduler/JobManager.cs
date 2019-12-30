@@ -35,14 +35,16 @@ namespace CronScheduler
         {
             if (_isDisposed)
                 return;
-            var nextOccurrence = _crontabSchedule.GetNextOccurrence(DateTime.Now);
-            var timeSpanTillNexOccurence = nextOccurrence - DateTime.Now;
+            var now = DateTime.Now;
+            var nextOccurrence = _crontabSchedule.GetNextOccurrence(now);
+            var timeSpanTillNexOccurence = nextOccurrence - now;
+            Console.WriteLine($"the next instance will run in {timeSpanTillNexOccurence}");
             _timer.Change(timeSpanTillNexOccurence, TimeSpan.Zero);
         }
 
-        private async void RunNextAsync(object timeSpanUntilNextOccurence)
+        private async void RunNextAsync(object timer)
         {
-            var taskDuration = (TimeSpan) timeSpanUntilNextOccurence;
+            var taskDuration = (TimeSpan) TimeSpan.FromMinutes(1);
             SetupTimer();
             if (!_isJobBeingProcessed || JobConfiguration.AllowParallelExecution)
                 await RunJobAsync(taskDuration);
@@ -66,6 +68,7 @@ namespace CronScheduler
             }
             finally
             {
+                _cancellationTokenSource.Dispose();
                 _isJobBeingProcessed = false;
             }
         }

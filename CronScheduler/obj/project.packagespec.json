@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
+    "projectUniqueName": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj",
     "projectName": "CronScheduler",
-    "projectPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\CronScheduler.csproj",
-    "outputPath": "C:\\Users\\m.shakiba\\Desktop\\Projects\\Jabama.Worker.Services\\CronScheduler\\obj\\",
+    "projectPath": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\CronScheduler.csproj",
+    "outputPath": "D:\\Projects\\C#\\DotNetScheduler\\CronScheduler\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14,8 +14,7 @@
     ],
     "sources": {
       "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-      "https://api.nuget.org/v3/index.json": {},
-      "https://nexus.indraproject.ir/repository/indra-dev-nuget": {}
+      "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
       "netcoreapp3.0": {
@@ -31,6 +30,10 @@
   "frameworks": {
     "netcoreapp3.0": {
       "dependencies": {
+        "Microsoft.Extensions.Hosting.Abstractions": {
+          "target": "Package",
+          "version": "[3.1.0, )"
+        },
         "Microsoft.Extensions.Logging": {
           "target": "Package",
           "version": "[3.1.0, )"

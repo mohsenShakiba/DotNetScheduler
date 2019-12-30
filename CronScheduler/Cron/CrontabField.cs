@@ -80,6 +80,14 @@ namespace CronScheduler.Cron
         /// <summary>
         /// Parses a crontab field expression representing minutes.
         /// </summary>
+        public static CrontabField Seconds(string expression)
+        {
+            return new CrontabField(CrontabFieldImpl.Second, expression);
+        }
+        
+        /// <summary>
+        /// Parses a crontab field expression representing minutes.
+        /// </summary>
         public static CrontabField Minutes(string expression)
         {
             return new CrontabField(CrontabFieldImpl.Minute, expression);
