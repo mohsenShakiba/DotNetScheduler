@@ -13,6 +13,7 @@ namespace CronScheduler
 
         public void AddJob<T>(string cronExpression) where T: class, IJob
         {
+            _serviceCollection.AddTransient<T>();
             _serviceCollection.AddScoped<IJobSpecification>(_ => new JobSpecification(typeof(T), cronExpression));
         }
     }

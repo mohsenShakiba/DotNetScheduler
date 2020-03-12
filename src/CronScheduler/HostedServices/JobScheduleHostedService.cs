@@ -8,18 +8,19 @@ namespace CronScheduler.HostedServices
 {
     public class JobScheduleHostedService: IHostedService
     {
-        private readonly IServiceProvider _serviceScopeFactory;
+        private readonly IServiceProvider _serviceProvider;
         private readonly IJobScheduler _jobScheduler;
 
         public JobScheduleHostedService(IServiceProvider serviceProvider)
         {
-            _serviceScopeFactory = serviceProvider;
+            _serviceProvider = serviceProvider;
             _jobScheduler = new JobScheduler(serviceProvider);
         }
         
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var jobSpecifications = _serviceScopeFactory.GetServices<IJobSpecification>();
+            using var scoped = _serviceProvider.CreateScope();
+            var jobSpecifications = scoped.ServiceProvider.GetServices<IJobSpecification>();
             
             foreach(var jobSpecification in jobSpecifications)
                 _jobScheduler.RegisterJob(jobSpecification.JobType, jobSpecification.CronExpression);

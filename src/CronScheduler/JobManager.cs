@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using CronScheduler.Cron;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Scheduler.Base.Config;
 
@@ -10,22 +11,24 @@ namespace CronScheduler
     public class JobManager: IDisposable, IEquatable<JobManager>
     {
 
-        public IJob Job { get; }
+        public Type JobType { get; }
         public string CronExpression { get; }
         public JobConfiguration JobConfiguration { get; }
         
         private readonly CrontabSchedule _crontabSchedule;
         private readonly Timer _timer;
         private CancellationTokenSource _cancellationTokenSource;
+        private readonly IServiceProvider _serviceProvider;
         private readonly ILogger _logger;
         private bool _isJobBeingProcessed;
         private bool _isDisposed;
         private DateTime _nextOccurenceExedutionDate;
 
-        public JobManager(IJob job, string cronExpression, JobConfiguration jobConfiguration, ILogger logger)
+        public JobManager(Type jobType, string cronExpression, JobConfiguration jobConfiguration, IServiceProvider serviceProvider)
         {
-            _logger = logger;
-            Job = job;
+            JobType = jobType;
+            _serviceProvider = serviceProvider;
+            _logger = serviceProvider.GetRequiredService<ILogger<JobManager>>();
             CronExpression = cronExpression;
             JobConfiguration = jobConfiguration;
             _crontabSchedule = CrontabSchedule.Parse(CronExpression);
@@ -42,7 +45,7 @@ namespace CronScheduler
             if (timeSpanTillNexOccurence < TimeSpan.MinValue)
                 timeSpanTillNexOccurence = TimeSpan.FromSeconds(1);
             _timer.Change(timeSpanTillNexOccurence, TimeSpan.Zero);
-            _logger.LogInformation($"Job: {JobShortName} rescheduled for {timeSpanTillNexOccurence.TotalSeconds} seconds from now");
+            _logger.LogInformation($"Job: {JobShortName} scheduled for {timeSpanTillNexOccurence.TotalSeconds} seconds from now");
         }
 
         private async void RunNextAsync(object timer)
@@ -61,7 +64,9 @@ namespace CronScheduler
             _isJobBeingProcessed = true;
             try
             {
-                await Job.RunAsync(_cancellationTokenSource.Token);
+                using var scope = _serviceProvider.CreateScope();
+                var job = (IJob)scope.ServiceProvider.GetService(JobType);
+                await job.RunAsync(_cancellationTokenSource.Token);
             }
             catch (TaskCanceledException)
             {
@@ -85,7 +90,7 @@ namespace CronScheduler
             _cancellationTokenSource?.Cancel();
         }
 
-        public string JobShortName => $"{Job.GetType()}";
+        public string JobShortName => $"{JobType}";
 
         public override string ToString()
         {
@@ -96,7 +101,7 @@ namespace CronScheduler
         {
             unchecked
             {
-                return ((Job != null ? Job.GetHashCode() : 0) * 397) ^ CronExpression.GetHashCode();
+                return ((JobType.GetHashCode()) * 397) ^ CronExpression.GetHashCode();
             }
         }
 
@@ -104,7 +109,7 @@ namespace CronScheduler
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Job.GetType().FullName == other.Job.GetType().FullName && CronExpression == other.CronExpression;
+            return JobType.FullName == other.JobType.FullName && CronExpression == other.CronExpression;
         }
 
         public override bool Equals(object obj)

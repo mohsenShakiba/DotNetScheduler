@@ -28,9 +28,7 @@ namespace TestProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped<TestJob>();
-
+            
             services.AddScheduler(b =>
             {
                 b.AddJob<TestJob>("*/10 * * * * *");
@@ -44,7 +42,7 @@ namespace TestProject
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -19,10 +19,7 @@ namespace CronScheduler
 
         public void RegisterJob(Type jobType, string cronExpression, JobConfiguration jobConfiguration = null)
         {
-            using var scopedService = _serviceProvider.CreateScope();
-            var job = scopedService.ServiceProvider.GetService(jobType) as IJob;
-            var jobLogger = scopedService.ServiceProvider.GetService<ILogger<IJob>>();
-            var jobManager = new JobManager(job, cronExpression, jobConfiguration ?? new JobConfiguration(), jobLogger);
+            var jobManager = new JobManager(jobType, cronExpression, jobConfiguration ?? new JobConfiguration(), _serviceProvider);
             _jobsManagerList.Add(jobManager);
             jobManager.SetupTimer();
         }
